@@ -8,7 +8,7 @@ let candidateName = " ";
 let question = "Who was the first American woman in space? ";
 let correctAnswer = "Sally Ride";
 let candidateAnswer = " ";
-
+let candidateAnswers = [];
 
 //TODO: Variables for Part 2
 let questions =
@@ -22,7 +22,6 @@ let correctAnswers = ["Sally Ride",
   "40",
   "Trajectory",
   "3"];
-let candidateAnswers = [];
 
 
 function askForName() {
@@ -32,27 +31,39 @@ function askForName() {
 
 function askQuestion() {
   // TODO 1.2b: Ask candidate the question and assign the response as candidateAnswer //
+  
   for (i = 0; i < questions.length; i++) {
     console.log(questions[i]);
     candidateAnswer = input.question("Answer: ");
     candidateAnswers.push(candidateAnswer);
   } 
+
   return candidateAnswers;
 }
 
-function gradeQuiz(askQuestion, correctAnswers) {
+function gradeQuiz(candidateAnswers) {
+  console.log("dog");
+  // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly //
+  for (iAnswer = 0; iAnswer < candidateAnswers.length; iAnswer++) {
+    console.log(`Your answer: ${candidateAnswers[iAnswer]}
+    Correct answer: ${correctAnswers[iAnswer]}`);
+  }
 
-  // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
-  for (iAnswer = 0; iAnswer < correctAnswers; iAnswer++) {
-    `Your answer: ${askQuestion()[iAnswer]}
-    Correct answer: ${correctAnswers[iAnswer]}`
+
+  let grade = 0;  //TODO 3.2 use this variable to calculate the candidates score.
+  let score = 0;
+  for (let igrade = 0; igrade < correctAnswers.length; igrade++){
+    if (correctAnswers[igrade].toLowerCase() === candidateAnswers[igrade].toLowerCase()) {
+      score++;
+    }
+  } 
+  grade = (score / 5 * 100);
+  if (grade >= 80) {
+    console.log(`Congrats, you passed the quiz with ${grade}%!`);
+  } else {
+    console.log(`Sorry, your score was ${grade}, you failed the quiz.`)
   }
   
-
-
-let grade;  //TODO 3.2 use this variable to calculate the candidates score.
-
-
 return grade;
 }
 
@@ -63,7 +74,7 @@ function runProgram() {
   askQuestion();
   gradeQuiz(this.candidateAnswers);
 }
-runProgram();
+
 
 // ----------- Don't write any code or change any code below this line ---------- //
 module.exports = {
