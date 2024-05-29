@@ -42,7 +42,6 @@ function askQuestion() {
 }
 
 function gradeQuiz(candidateAnswers) {
-  console.log("dog");
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly //
   for (iAnswer = 0; iAnswer < candidateAnswers.length; iAnswer++) {
     console.log(`Your answer: ${candidateAnswers[iAnswer]}
